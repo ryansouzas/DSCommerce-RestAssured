@@ -223,4 +223,21 @@ public class ProductControllerRA {
                 .body("errors.message[0]", equalTo("Deve ter pelo menos uma categoria"));
 
     }
+
+    @Test
+    public void insertReturnForbiddenWhenClientLogged(){
+        JSONObject newProduct = new JSONObject(postProductInstance);
+
+        given()
+                .header("Content-type", "application/json")
+                .header("Authorization", "Bearer " + clientToken)
+                .body(newProduct)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+           .when()
+                .post("/products")
+           .then()
+                .statusCode(403);
+
+    }
 }
