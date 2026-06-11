@@ -276,7 +276,6 @@ public class ProductControllerRA {
 
     @Test
     public void deleteShouldReturnNotFoundWhenIdDoesNotExistAndAdminLogged() {
-
         given()
                 .header("Authorization", "Bearer " + adminToken)
                 .when()
@@ -289,7 +288,6 @@ public class ProductControllerRA {
 
     @Test
     public void deleteShouldReturnBadRequestWhenDependentIdAndAdminLogged() {
-
         given()
                 .header("Authorization", "Bearer " + adminToken)
                 .when()
@@ -300,7 +298,6 @@ public class ProductControllerRA {
 
     @Test
     public void deleteShouldReturnForbiddenWhenClientLogged() {
-
         given()
                 .header("Authorization", "Bearer " + clientToken)
                 .when()
@@ -310,8 +307,7 @@ public class ProductControllerRA {
     }
 
     @Test
-    public void deleteShouldReturnNoContentWhenIdDoesNotExistAndClientLogged() {
-
+    public void deleteShouldReturnUnauthorizedWhenInvalidToken() {
         given()
                 .header("Authorization", "Bearer " + invalidToken)
                 .when()
